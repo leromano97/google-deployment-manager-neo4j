@@ -57,13 +57,13 @@ def generate_config(context):
         })
 
     else:
-        # public_ip_addresss = {
-        #     'name': 'standalone-ip-address',
-        #     'type': 'standalone_ip_address.py',
-        #     'properties': {
-        #         'region': region,
-        #     }
-        # }
+        public_ip_addresss = {
+            'name': 'standalone-ip-address',
+            'type': 'standalone_ip_address.py',
+            'properties': {
+                'region': region,
+            }
+        }
         instance_group = {
             'name': 'instance-group',
             'type': 'instance_group.py',
@@ -75,12 +75,12 @@ def generate_config(context):
         }
 
         config['resources'].append(instance_group)
-        # config['resources'].append(public_ip_addresss)
+        config['resources'].append(public_ip_addresss)
 
-        # config['outputs'].append({
-        #     'name': 'ip',
-        #     'value': '$(ref.standalone-ip-address.ip)'
-        # })
+        config['outputs'].append({
+            'name': 'ip',
+            'value': '$(ref.standalone-ip-address.ip)'
+        })
     return config
 
 
