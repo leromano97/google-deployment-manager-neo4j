@@ -1,7 +1,7 @@
 def generate_config(context):
     properties = context.properties
     external_firewall_name = context.env['deployment'] + '-external'
-    internal_firewall_name = context.env['deployment'] + '-internal'
+    internal_firewall_name = 'fw-2202182'
 
     firewall_external = {
         'name': external_firewall_name,
@@ -26,13 +26,13 @@ def generate_config(context):
             'targetTags': [internal_firewall_name],
             'allowed': [{
                 'IPProtocol': 'tcp',
-                'ports': ['5000', '6000', '7000', '7688']
+                'ports': ['5000', '6000', '7000', '7688', '7474', '7687']
             }]
         }
     }
 
     config = {'resources': [], 'outputs': []}
     config['resources'].append(firewall_internal)
-    config['resources'].append(firewall_external)
+    # config['resources'].append(firewall_external)
 
     return config
